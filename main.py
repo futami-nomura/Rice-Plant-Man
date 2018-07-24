@@ -11,7 +11,7 @@ model = None
 
 def load_model():
     global model
-    model = models.load_model('my_model.h5')
+    model = models.load_model('ine_24.hdf5')
     model.summary()
     print('Loaded the model')
 
@@ -32,9 +32,8 @@ def predict():
         pred = model.predict(img)
 
         players = [
-            'Lebron James',
-            'Stephen Curry',
-            'Kevin Durant',
+            'ine',
+            'other',
         ]
 
         confidence = str(round(max(pred[0]), 3))
