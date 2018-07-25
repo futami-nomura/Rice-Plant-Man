@@ -3,6 +3,8 @@ from keras import models
 import numpy as np
 from PIL import Image
 import io
+from keras.preprocessing import image
+from keras.applications.resnet50 import preprocess_input
 
 
 app = Flask(__name__)
@@ -11,7 +13,7 @@ model = None
 
 def load_model():
     global model
-    model = models.load_model('my_model.h5')
+    model = models.load_model('model.04-4.33.hdf5')
     model.summary()
     print('Loaded the model')
 
@@ -27,19 +29,37 @@ def predict():
         img = request.files['picfile'].read()
         img = Image.open(io.BytesIO(img))
         img.save('test.jpg')
-        img = np.asarray(img) / 255.
+
+        x = image.img_to_array(img)
         img = np.expand_dims(img, axis=0)
+        img = preprocess_input(img)
+        """
         pred = model.predict(img)
 
+        x = img.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        x = preprocess_input(x)
+        """
+
+        y_pred = model.predict(img)
+
+        if y_pred <0.5:
+            confidence = str(y_pred[0][0])
+            pred = "rice-plant"
+        else:
+            confidence = str(y_pred[0][0])
+            pred = "dog"
+
+        """
         players = [
-            'Lebron James',
-            'Stephen Curry',
-            'Kevin Durant',
+            'rice-plant',
+            'other',
         ]
 
         confidence = str(round(max(pred[0]), 3))
         pred = players[np.argmax(pred)]
 
+        """
         data = dict(pred=pred, confidence=confidence)
         return jsonify(data)
 
