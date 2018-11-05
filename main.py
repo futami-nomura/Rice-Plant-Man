@@ -24,6 +24,10 @@ def load_model():
 def index():
     return redirect('/static/index.html')
 
+@app.route('/detail')
+def detail():
+    return render_template('/static/detail.html')
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -39,14 +43,14 @@ def predict():
 
         pred = model.predict(img)
 
-        players = [
+        disease = [
             'ごま葉枯病',
             'いもち病',
             '縞葉枯病',
         ]
 
         confidence = str(round(max(pred[0]), 3))
-        pred = players[np.argmax(pred)]
+        pred = disease[np.argmax(pred)]
 
 
         data = dict(pred=pred, confidence=confidence)
