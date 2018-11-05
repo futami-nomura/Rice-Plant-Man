@@ -13,7 +13,7 @@ model = None
 
 def load_model():
     global model
-    model = models.load_model('model.04-4.33.hdf5')
+    model = models.load_model('sep_05.h5')
     model.summary()
     print('Loaded the model')
 
@@ -30,36 +30,23 @@ def predict():
         img = Image.open(io.BytesIO(img))
         img.save('test.jpg')
 
-        x = image.img_to_array(img)
+        img = np.asarray(img) / 255.
         img = np.expand_dims(img, axis=0)
-        img = preprocess_input(img)
-        """
         pred = model.predict(img)
 
-        x = img.img_to_array(img)
-        x = np.expand_dims(x, axis=0)
-        x = preprocess_input(x)
-        """
 
-        y_pred = model.predict(img)
+        pred = model.predict(img)
 
-        if y_pred <0.5:
-            confidence = str(y_pred[0][0])
-            pred = "rice-plant"
-        else:
-            confidence = str(y_pred[0][0])
-            pred = "dog"
-
-        """
         players = [
-            'rice-plant',
-            'other',
+            'ごま葉枯病',
+            'いもち病',
+            '縞葉枯病',
         ]
 
         confidence = str(round(max(pred[0]), 3))
         pred = players[np.argmax(pred)]
 
-        """
+
         data = dict(pred=pred, confidence=confidence)
         return jsonify(data)
 
