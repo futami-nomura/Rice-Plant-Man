@@ -27,3 +27,18 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.toindex {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #424242;
+  border: solid 2px #424242;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.toindex:hover {
+  background: #424242;
+  color: white;
+}
