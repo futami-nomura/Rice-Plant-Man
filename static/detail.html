@@ -4,9 +4,26 @@
   <title>ホーム | イネの病気判別</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/css/detail.css">
+  <link rel="stylesheet" type="text/css" href="./css/detail.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="jquery.particleground.js"></script>
 </head>
 <body>
+  <div id="particles">
+    <canvas class="pg-canvas"></canvas>
+  </div>
+  <div class="content">
+    <p class="description">
+      What if Convolutional Neural Network helps "Agriculture"?
+    </p>
+  </div>
+  <script>
+  $('#particles').particleground({
+    dotColor: '#0B610B',
+    lineColor: '#0B610B'
+  });
+  </script>
 </body>
 <footer>
 </footer>
