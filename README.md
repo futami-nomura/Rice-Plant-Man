@@ -1,12 +1,11 @@
 # Keras & Flask Deep Learnig Classifier
-## How to use
-```
-git clone <this repo>
-cd keras-flask-classifier
-python main.py
+## What
+This application classifies the disease of rice plants. <br>
+Keras and Flask are used on this application.<br>
+When you'd like to use this, please command below.
 
-open http://127.0.0.1:5000/ on your browser
-click the image upload button
 ```
-## Demo
-![demo](https://github.com/harupy/keras-flask-classifier/blob/master/demo.gif)
+python3 main.py
+```
+
+Then, upload images that is disease of rice-plants please.

@@ -1,4 +1,5 @@
 from flask import Flask, redirect, request, jsonify
+# from flask_scss import Scss
 from keras import models
 import numpy as np
 from PIL import Image
@@ -8,6 +9,7 @@ from keras.applications.resnet50 import preprocess_input
 
 
 app = Flask(__name__)
+#Scss(app, static_dir='static', asset_dir='assets')
 model = None
 
 
@@ -18,9 +20,13 @@ def load_model():
     print('Loaded the model')
 
 
-@app.route('/')
+@app.route('/index')
 def index():
-    return redirect('/static/index.html')
+    return render_template('/static/index.html')
+
+@app.route('/')
+def detail():
+    return redirect('/static/detail.html')
 
 
 @app.route('/predict', methods=['POST'])
@@ -37,14 +43,14 @@ def predict():
 
         pred = model.predict(img)
 
-        players = [
+        disease = [
             'ごま葉枯病',
             'いもち病',
             '縞葉枯病',
         ]
 
         confidence = str(round(max(pred[0]), 3))
-        pred = players[np.argmax(pred)]
+        pred = disease[np.argmax(pred)]
 
 
         data = dict(pred=pred, confidence=confidence)
