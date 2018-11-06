@@ -13,7 +13,7 @@ p.description {
   color: white;
   font-weight: bold;
   padding: 5rem;
-
+  font-family:  "メイリオ",'Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3', Meiryo,'ＭＳ ゴシック',sans-serif;
 }
 
 .content{

@@ -20,13 +20,13 @@ def load_model():
     print('Loaded the model')
 
 
-@app.route('/')
+@app.route('/index')
 def index():
-    return redirect('/static/index.html')
+    return render_template('/static/index.html')
 
-@app.route('/detail')
+@app.route('/')
 def detail():
-    return render_template('/static/detail.html')
+    return redirect('/static/detail.html')
 
 
 @app.route('/predict', methods=['POST'])
