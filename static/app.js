@@ -12,7 +12,6 @@ $(function(){
 
   var successResult = function(data){
     $("#prediction").text("Prediction: " + data.pred)
-    $("#confidence").text("Confidence: " + data.confidence)
     var req = {
       url: "/currentimage",
       method: "get"
